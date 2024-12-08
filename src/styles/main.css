@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  color: var(--color-dark-bg);
+}
+:root {
+  --color-light-bg: #fff;
+  --color-mid-gray: #acaaae;
+  --color-bright-red: #e41b1c;
+  --color-dark-red: #b21f21;
+  --color-dark-bg: #0b0910;
+  --color-deep-purple: #423550;
+  --color-rich-purple: #9c3ab3;
+  --color-rich-pink: #f91996;
+}
+/* body {
+  background-color: #191528;
+  color: white;
+} */
+body {
+  background-color: var(--color-light-bg);
+  font-family: "Nunito", sans-serif;
+  position: relative;
+  z-index: 5;
+}
+header {
+  width: 100%;
+  height: 20em;
+  background: linear-gradient(90deg, #9c3ab3, #f91996);
+  position: relative;
+  filter: drop-shadow(1px 1px 10px #9c3ab3);
+  margin-bottom: 20em;
+}
+
+.headerWave {
+  width: 100%;
+  height: 16em;
+  mask-repeat: no-repeat;
+  mask-size: cover;
+  mask-image: url("../Images/wave-haikei3.svg");
+  background: linear-gradient(90deg, #9c3ab3, #f91996);
+
+  position: absolute;
+  bottom: -16em;
+  left: 0;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    margin-bottom: 8em;
+  }
+}
