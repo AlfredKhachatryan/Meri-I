@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import React, { useEffect, Component } from "react";
 import { useNavigate, BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { Provider } from "./Components/ui/provider";
 //end of import
 
 //imported CDNs
@@ -20,11 +20,13 @@ import "./styles/main.css";
 import { Main } from "./Pages/about_us";
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route index element={<Main />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Main />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 const root = createRoot(document.getElementById("root"));
