@@ -6,8 +6,42 @@ function Main() {
   return (
     <>
       <Header />
-      <Box p="12px">
-        <Flex direction="column">
+      <Box p="24px">
+        <Heading>
+          Section <Box className="fa-solid fa-heart" color="#f91996" /> 1
+        </Heading>
+      </Box>
+
+      <Divider />
+
+      <Box p="24px" textAlign="center">
+        <Heading>
+          Утем <Box className="fa-solid fa-heart" color="#f91996" /> Кез
+        </Heading>
+        <Text fontSize="18px" fontWeight="500">
+          Кянкс ты у меня самая красивая умная самая альтушка и самая бомжук но
+          ты моя))
+        </Text>
+        <Flex justifyContent="center">
+          <Heart url={["url(./pic1.jpg)", "url(./pic2.jpg)"]} />
+          <Heart url={["url(./pic1.jpg)", "url(./pic2.jpg)"]} />
+          <Heart url={["url(./pic1.jpg)", "url(./pic2.jpg)"]} />
+        </Flex>
+        <Flex justifyContent="center" rotate="180deg" marginTop="-50px">
+          <Heart url={["url(./pic2.jpg)", "url(./pic1.jpg)"]} />
+          <Heart url={["url(./pic2.jpg)", "url(./pic1.jpg)"]} />
+        </Flex>
+      </Box>
+
+      <Divider rotate="180deg" />
+
+      <Box p="24px">
+        <Heading textAlign="center">
+          Наше{" "}
+          <Box className="fa-solid fa-house-chimney-heart" color="#f91996" />{" "}
+          Будущее
+        </Heading>
+        <Box fontWeight="500" pt={"2rem"} pl="2rem">
           {[...Array(3)].map((_, i) => (
             <Section
               key={i}
@@ -19,35 +53,38 @@ function Main() {
               Step="Step"
             />
           ))}
-        </Flex>
+        </Box>
       </Box>
+
       <Divider />
-      <Box p="12px" textAlign="center">
-        <Heading>
-          Утем <Box className="fa fa-heart" color="#f91996" /> Кез
+
+      <Box p="24px">
+        <Heading textAlign="center">
+          Наше{" "}
+          <Box className="fa-solid fa-house-chimney-heart" color="#f91996" />{" "}
+          Будущее
         </Heading>
-        <Text fontSize="18px" fontWeight="500">
-          Кянкс ты у меня самая красивая умная самая альтушка и самая бомжук но
-          ты моя))
-        </Text>
-        <Flex justifyContent="center">
-          <Heart />
-          <Heart />
-          <Heart />
-        </Flex>
-        <Flex justifyContent="center" rotate="180deg" marginTop="-50px">
-          <Heart />
-          <Heart />
-        </Flex>
+        <Box fontWeight="500" pt={"2rem"} pl="2rem">
+          {[...Array(3)].map((_, i) => (
+            <Section
+              key={i}
+              index={i + 1}
+              active={active}
+              setActive={setActive}
+              HeadingTxt="I love You <3"
+              Description="<3<3<3<3<3<3<3<3<3<3<3"
+              Step="Step"
+            />
+          ))}
+        </Box>
       </Box>
-      <Divider rotate="180deg" />
     </>
   );
 }
 
 export { Main };
 
-const Heart = (props) => {
+const Heart = ({ url, props }) => {
   return (
     <Box
       id="heart"
@@ -64,7 +101,7 @@ const Heart = (props) => {
         w: "52px",
         h: "80px",
         borderRadius: "50px 50px 0 0",
-        bgImage: "url(./pic1.jpg)", // Replace with your image URL
+        bgImage: url[0], // Replace with your image URL
         bgSize: "cover",
         bgPosition: "center",
         transform: "rotate(-45deg)",
@@ -78,7 +115,7 @@ const Heart = (props) => {
         w: "52px",
         h: "80px",
         borderRadius: "50px 50px 0 0",
-        backgroundImage: "url(./pic2.jpg)", // Replace with your image URL
+        backgroundImage: url[1], // Replace with your image URL
         backgroundSize: "cover",
         backgroundPosition: "center",
         transform: "rotate(45deg)",
