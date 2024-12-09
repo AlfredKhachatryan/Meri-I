@@ -25,7 +25,6 @@ body {
 }
 header {
   width: 100%;
-  height: 20em;
   background: linear-gradient(90deg, #9c3ab3, #f91996);
   position: relative;
   filter: drop-shadow(1px 1px 10px #9c3ab3);
@@ -39,15 +38,46 @@ header {
   mask-size: cover;
   mask-image: url("../Images/wave-haikei3.svg");
   background: linear-gradient(90deg, #9c3ab3, #f91996);
-
-  position: absolute;
-  bottom: -16em;
-  left: 0;
-  overflow: hidden;
 }
 
 @media only screen and (max-width: 600px) {
   header {
     margin-bottom: 8em;
   }
+}
+
+.heart-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  width: 64px; /* Adjust as needed */
+  height: 64px; /* Adjust as needed */
+  position: relative;
+}
+
+.heart-part {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  border-radius: 50%; /* Makes the top halves round */
+}
+
+.heart-part:nth-child(1),
+.heart-part:nth-child(2) {
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.heart-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  transform: rotate(45deg);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  z-index: -1;
 }

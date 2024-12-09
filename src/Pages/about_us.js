@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Header } from "../Components/Header";
-import { Box, Flex, Text, Heading } from "@chakra-ui/react";
+import { Box, Flex, Text, Heading, Grid } from "@chakra-ui/react";
 function Main() {
   const [active, setActive] = useState(1);
   return (
     <>
       <Header />
-      <Box as="main" p="12px">
+      <Box p="12px">
         <Flex direction="column">
           {[...Array(3)].map((_, i) => (
             <Section
@@ -21,11 +21,72 @@ function Main() {
           ))}
         </Flex>
       </Box>
+      <Divider />
+      <Box p="12px" textAlign="center">
+        <Heading>
+          Утем <Box className="fa fa-heart" color="#f91996" /> Кез
+        </Heading>
+        <Text fontSize="18px" fontWeight="500">
+          Кянкс ты у меня самая красивая умная самая альтушка и самая бомжук но
+          ты моя))
+        </Text>
+        <Flex justifyContent="center">
+          <Heart />
+          <Heart />
+          <Heart />
+        </Flex>
+        <Flex justifyContent="center" rotate="180deg" marginTop="-50px">
+          <Heart />
+          <Heart />
+        </Flex>
+      </Box>
+      <Divider rotate="180deg" />
     </>
   );
 }
 
 export { Main };
+
+const Heart = (props) => {
+  return (
+    <Box
+      id="heart"
+      position="relative"
+      w="100px"
+      h="90px"
+      mt="10px"
+      {...props}
+      _before={{
+        content: '""',
+        position: "absolute",
+        top: "0",
+        left: "50px",
+        w: "52px",
+        h: "80px",
+        borderRadius: "50px 50px 0 0",
+        bgImage: "url(./pic1.jpg)", // Replace with your image URL
+        bgSize: "cover",
+        bgPosition: "center",
+        transform: "rotate(-45deg)",
+        transformOrigin: "0 100%",
+      }}
+      _after={{
+        content: '""',
+        position: "absolute",
+        top: "0",
+        left: "0",
+        w: "52px",
+        h: "80px",
+        borderRadius: "50px 50px 0 0",
+        backgroundImage: "url(./pic2.jpg)", // Replace with your image URL
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        transform: "rotate(45deg)",
+        transformOrigin: "100% 100%",
+      }}
+    />
+  );
+};
 
 const Section = ({
   active = 1,
@@ -77,14 +138,12 @@ const Section = ({
       <Box p="12px 20px" position="relative">
         {index < 3 && (
           <Box w="2px" bg="#DAD5CE" h="116px" position="relative">
-            <div
+            <Box
               className="fa fa-heart"
-              style={{
-                position: "absolute",
-                bottom: "-2px",
-                left: "-7px",
-                color: "#f91996",
-              }}
+              position="absolute"
+              bottom="-2px"
+              left="-7px"
+              color="#f91996"
             />
           </Box>
         )}
@@ -105,4 +164,15 @@ const Section = ({
       </Box>
     </Flex>
   </Box>
+);
+
+const Divider = (props) => (
+  <Flex direction="column" height="7em" {...props}>
+    <Box
+      className="headerWave"
+      rotate="180deg"
+      background="linear-gradient(90deg, #f91996, #9c3ab3)"
+    />
+    <Box className="headerWave" />
+  </Flex>
 );
