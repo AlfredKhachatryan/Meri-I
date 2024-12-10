@@ -3,7 +3,14 @@ import { Header } from "../Components/Header";
 import { Box, Flex, Text, Heading, Grid } from "@chakra-ui/react";
 import { Spoiler } from "spoiled";
 function Main() {
-  const [active, setActive] = useState(1);
+  const [openedTabs, setOpenedTabs] = useState([2, 3]); // Keep track of opened indices
+
+  const toggleTab = (index) => {
+    // Toggle logic: if already open, close it; otherwise, open it
+    if (openedTabs.includes(index)) {
+      setOpenedTabs(openedTabs.filter((tab) => tab !== index));
+    }
+  };
   return (
     <>
       <Header />
@@ -95,8 +102,8 @@ function Main() {
             <Section
               key={i}
               index={i + 1}
-              active={active}
-              setActive={setActive}
+              openedIndices={openedTabs}
+              toggleTab={toggleTab}
               HeadingTxt="I love You <3"
               Description="<3<3<3<3<3<3<3<3<3<3<3"
               Step="Step"
@@ -152,29 +159,32 @@ const Heart = ({ url, props }) => {
 };
 
 const Section = ({
-  active = 1,
   index,
-  setActive,
   HeadingTxt,
   Description,
-  Step,
+  openedIndices,
+  toggleTab,
 }) => (
-  <Box
-    onClick={() => setActive(index)}
+  <Flex
+    onClick={() => toggleTab(index)}
     cursor={{ base: "default", md: "pointer" }}
   >
-    <Flex gap="12px" align="center">
-      <Box
+    <Flex align="center" flexDirection="column">
+      <Flex
         p="8px 16px"
-        bg={active === index ? "#f91996" : "#9c3ab3"}
-        border={active === index ? "1px solid #e41b1c" : "1px solid #DAD5CE"}
+        bg={!openedIndices.includes(index) ? "#f91996" : "#9c3ab3"}
+        border={
+          !openedIndices.includes(index)
+            ? "1px solid #e41b1c"
+            : "1px solid #DAD5CE"
+        }
         borderRadius="12px"
         transition="0.3s"
         w="40px"
         h="40px"
-        display="flex"
         justifyContent="center"
         alignItems="center"
+        flexDirection="row"
       >
         <Text
           fontSize="16px"
@@ -185,14 +195,8 @@ const Section = ({
         >
           {index}
         </Text>
-      </Box>
+      </Flex>
 
-      <Heading fontSize="18px" fontWeight="500" pb="4px">
-        {HeadingTxt}
-      </Heading>
-    </Flex>
-
-    <Flex maxW="332px">
       <Box p="12px 20px" position="relative">
         {index < 3 && (
           <Box w="2px" bg="#DAD5CE" h="116px" position="relative">
@@ -206,19 +210,44 @@ const Section = ({
           </Box>
         )}
       </Box>
+    </Flex>
 
-      <Box pl="12px">
+    <Flex
+      maxW="332px"
+      flexDirection="column"
+      paddingLeft="12px"
+      position="relative"
+    >
+      <Heading fontSize="18px" fontWeight="500" pb="4px" pos="relative">
+        {HeadingTxt}
+      </Heading>
+      <Box>
         <Text
           lineHeight="21px"
           letterSpacing="0.07px"
           fontSize="14px"
           color="#4A4A4A"
+          position="relative"
         >
           {Description}
         </Text>
       </Box>
+      <Box
+        background="#9c3ab3 radial-gradient(rgba(255, 255, 255, 0.712) 10%, transparent 1%)"
+        borderRadius="8px"
+        backdropFilter="blur(3px)"
+        opacity={openedIndices.includes(index) ? "1" : "0"}
+        border="1px solid #fff"
+        pos="absolute"
+        width="100%"
+        height="100%"
+        top="0"
+        transition="0.35s"
+        animation="moveBackground 8s linear infinite"
+        backgroundSize="5px 5px"
+      />
     </Flex>
-  </Box>
+  </Flex>
 );
 
 const Divider = (props) => (
