@@ -1,26 +1,45 @@
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import { Header } from "../Components/Header";
 import { Box, Flex, Text, Heading, Grid } from "@chakra-ui/react";
+import { Spoiler } from "spoiled";
 function Main() {
   const [active, setActive] = useState(1);
   return (
     <>
       <Header />
+      {/* 1 Section */}
       <Box p="24px">
-        <Heading>
-          Section <Box className="fa-solid fa-heart" color="#f91996" /> 1
+        <Heading textAlign="center">
+          I <Box className="fa-solid fa-heart" color="#f91996" /> U
         </Heading>
+        <br />
+        <Text fontSize="18px" fontWeight="500">
+          My dear <Box className="fa-solid fa-sun-bright" color="#f91996" /> I’m
+          so happy that we’ve been together for six months already. By the way,
+          we’re setting a record! Haha. We’ve gone through so much together,
+          like fire, water, and most importantly, my{" "}
+          <Box className="fa-solid fa-temperature-full" color="#f91996" /> fever
+          of 37.2°C! We made it through the first and second time. There’s still
+          so much ahead of us, like{" "}
+          <Box className="fa-solid fa-plane-departure" color="#f91996" />
+          and <Box className="fa-solid fa-plane-arrival" color="#f91996" />. But
+          we’ll get through it all together with our combined efforts!!!
+        </Text>
       </Box>
 
       <Divider />
+      {/* 2 Section */}
 
       <Box p="24px" textAlign="center">
         <Heading>
           Утем <Box className="fa-solid fa-heart" color="#f91996" /> Кез
         </Heading>
         <Text fontSize="18px" fontWeight="500">
-          Кянкс ты у меня самая красивая умная самая альтушка и самая бомжук но
-          ты моя))
+          Кянкс, еще в первый раз, когда мы встретились, я думал: ну, вряд ли у
+          нас что-то получится. Но я очень быстро в тебя влюбился. Я до сих пор
+          помню, как я пришел к тебе: мы сидели, и каким-то чудом, наверное, в
+          единственный раз спокойно сидели — я, ты, вафли и Пельмешка. Мы кушали
+          вафли и говорили. Ехехех... Ну и остальное я тоже помню!))))
         </Text>
         <Flex justifyContent="center">
           <Heart url={["url(./pic1.jpg)", "url(./pic2.jpg)"]} />
@@ -34,26 +53,33 @@ function Main() {
       </Box>
 
       <Divider rotate="180deg" />
+      {/* 3 Section */}
 
-      <Box p="24px">
-        <Heading textAlign="center">
-          Наше{" "}
-          <Box className="fa-solid fa-house-chimney-heart" color="#f91996" />{" "}
-          Будущее
+      <Box p="24px" textAlign="center">
+        <Heading>
+          Ես <Box className="fa-solid fa-heart" color="#f91996" /> Քեզ
         </Heading>
-        <Box fontWeight="500" pt={"2rem"} pl="2rem">
-          {[...Array(3)].map((_, i) => (
-            <Section
-              key={i}
-              index={i + 1}
-              active={active}
-              setActive={setActive}
-              HeadingTxt="I love You <3"
-              Description="<3<3<3<3<3<3<3<3<3<3<3"
-              Step="Step"
-            />
-          ))}
-        </Box>
+        <Text fontSize="18px" fontWeight="500">
+          Սերս, հա, կոֆեի սերս, թեկուզ դու 2-րդ անգամ մի քիչ վատնեիր ու ահավոր
+          բոմժ էիր, բայց մեկ ա, ես քեզ շատ եմ սիրում: Չնայած քո ՇԱՏ մեծ սերը
+          դեպի Չինաստան ու քո ոչ այդքան մեծ սերը դեպի Իսրայել, ես քեզ մեկ է
+          սիրում եմ՝ շատ, շատ, շատ~~~
+        </Text>
+      </Box>
+
+      <Divider />
+      {/* 4 Section */}
+
+      <Box p="24px" textAlign="center">
+        <Heading>
+          我 <Box className="fa-solid fa-heart" color="#f91996" /> 你
+        </Heading>
+        <Text fontSize="20px" fontWeight="500">
+          我的美人！我希望我们的一切都能如愿以偿， 每个人都能实现各自的梦想，
+          同时也能实现我们共同的梦想。
+          愿我们在美丽的中国乡村和其他我们想住的地方拥有自己的家。
+          我梦想着我们可以安静地生活在自己喜欢的地方，并一起度过长久而幸福的生活。
+        </Text>
       </Box>
 
       <Divider />
@@ -161,14 +187,9 @@ const Section = ({
         </Text>
       </Box>
 
-      <Text
-        color="#4A4A4A"
-        fontSize="14px"
-        fontWeight="500"
-        textTransform="uppercase"
-      >
-        {Step}
-      </Text>
+      <Heading fontSize="18px" fontWeight="500" pb="4px">
+        {HeadingTxt}
+      </Heading>
     </Flex>
 
     <Flex maxW="332px">
@@ -187,9 +208,6 @@ const Section = ({
       </Box>
 
       <Box pl="12px">
-        <Heading fontSize="18px" fontWeight="500" pb="4px">
-          {HeadingTxt}
-        </Heading>
         <Text
           lineHeight="21px"
           letterSpacing="0.07px"

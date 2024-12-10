@@ -29,6 +29,7 @@
     "react-scripts": "^5.0.1",
     "short-unique-id": "^5.2.0",
     "short-uuid": "^5.2.0",
+    "spoiled": "^0.3.3",
     "styled-components": "^6.1.11",
     "web-vitals": "^2.1.4"
   },
