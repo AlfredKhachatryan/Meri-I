@@ -1,9 +1,10 @@
 import { act, useEffect, useState } from "react";
 import { Header } from "../Components/Header";
+import { Footer } from "../Components/Footer";
 import { Box, Flex, Text, Heading, Grid } from "@chakra-ui/react";
 import { Spoiler } from "spoiled";
 function Main() {
-  const [openedTabs, setOpenedTabs] = useState([2, 3]); // Keep track of opened indices
+  const [openedTabs, setOpenedTabs] = useState([2, 3, 4, 5]); // Keep track of opened indices
 
   const toggleTab = (index) => {
     // Toggle logic: if already open, close it; otherwise, open it
@@ -11,6 +12,81 @@ function Main() {
       setOpenedTabs(openedTabs.filter((tab) => tab !== index));
     }
   };
+  const sections = [
+    {
+      title: "Этап 0",
+      description: (
+        <>
+          <Heading>Настоящее</Heading>
+          <Text>
+            Я повторяюсь я очень рад что мы вместе и вроде как ты тоже вхвх нас
+            хоть и ждут много чего впереди и приятного и не только но вот
+            примерный план в моей голове нашего будущего
+          </Text>
+        </>
+      ),
+    },
+    {
+      title: "Этап 1",
+      description: (
+        <>
+          <Heading>Китай</Heading>
+          <Text>
+            Нас будет ждать очень долгий и сложный путь когда ты будешь в Китае
+            я надеюсь что я буду достаточно богатым чтобы к тебе частенько к
+            тебе приходить в гости у нас будет год без кекса(( вхвхв но самое
+            главное чтобы мы не смотяр на все сложности это преодолели потому
+            что потом нас ждет
+          </Text>
+        </>
+      ),
+    },
+    {
+      title: "Этап 2",
+      description: (
+        <>
+          <Heading>Помолвка</Heading>
+          <Text>
+            После того как ты приедешь обратно и когда у нас все наладится и я
+            встречусь более официально с родителями то у нас будет помолвка
+            такая чтобы нам двоим было бы комфортно ехехех
+          </Text>
+        </>
+      ),
+    },
+    {
+      title: "Этап 3",
+      description: (
+        <>
+          <Heading>Свадьба</Heading>
+          <Text>
+            А вот после помоловки уже через некоторое время мы поженимся да
+            самому не верится но вот так вот у нас надеюсь будет наш дом машинка
+            для тебя и 2 кошки с собачкой и надеюсь без спинагрызов а вот дальше
+            нас ждет
+          </Text>
+        </>
+      ),
+    },
+    {
+      title: "Этап 4",
+      description: (
+        <>
+          <Heading>
+            Старость <span style={{ textDecoration: "line-through" }}>не</span>{" "}
+            Радость
+          </Heading>
+          <Text>
+            Мы уже буджем бабушкой и дедушкой с кучей воспоминаний и хороших и
+            плохих в приятной домике где то подальше от всей суеты только я ты и
+            наши животные ехех но до этого еще есть большой сложный и тернистый
+            путь но с тобой я готов пройти и не такое
+          </Text>
+        </>
+      ),
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -97,20 +173,21 @@ function Main() {
           <Box className="fa-solid fa-house-chimney-heart" color="#f91996" />{" "}
           Будущее
         </Heading>
-        <Box fontWeight="500" pt={"2rem"} pl="2rem">
-          {[...Array(3)].map((_, i) => (
+        <Box fontWeight="500" pt={"2rem"}>
+          {sections.map(({ title, description }, i) => (
             <Section
               key={i}
               index={i + 1}
               openedIndices={openedTabs}
               toggleTab={toggleTab}
-              HeadingTxt="I love You <3"
-              Description="<3<3<3<3<3<3<3<3<3<3<3"
+              HeadingTxt={title}
+              Description={description}
               Step="Step"
             />
           ))}
         </Box>
       </Box>
+      <Footer />
     </>
   );
 }
@@ -168,6 +245,7 @@ const Section = ({
   <Flex
     onClick={() => toggleTab(index)}
     cursor={{ base: "default", md: "pointer" }}
+    pb="2rem"
   >
     <Flex align="center" flexDirection="column">
       <Flex
@@ -197,9 +275,9 @@ const Section = ({
         </Text>
       </Flex>
 
-      <Box p="12px 20px" position="relative">
-        {index < 3 && (
-          <Box w="2px" bg="#DAD5CE" h="116px" position="relative">
+      <Box p="12px 20px" position="relative" flexGrow="1">
+        {index < 6 && (
+          <Box w="2px" bg="#DAD5CE" h="100%" position="relative">
             <Box
               className="fa fa-heart"
               position="absolute"
@@ -212,40 +290,30 @@ const Section = ({
       </Box>
     </Flex>
 
-    <Flex
-      maxW="332px"
-      flexDirection="column"
-      paddingLeft="12px"
-      position="relative"
-    >
-      <Heading fontSize="18px" fontWeight="500" pb="4px" pos="relative">
-        {HeadingTxt}
-      </Heading>
-      <Box>
+    <Flex maxW="332px" flexDirection="column" paddingLeft="12px">
+      <Box position="relative">
+        <Heading fontSize="18px" fontWeight="500" pb="4px" pos="relative">
+          {HeadingTxt}
+        </Heading>
         <Text
           lineHeight="21px"
           letterSpacing="0.07px"
           fontSize="14px"
           color="#4A4A4A"
-          position="relative"
         >
           {Description}
         </Text>
+        <GradientBox
+          borderRadius="8px"
+          backdropFilter="blur(3px)"
+          opacity={openedIndices.includes(index) ? "1" : "0"}
+          pos="absolute"
+          width="100%"
+          height="100%"
+          top="0"
+          transition="0.35s"
+        />
       </Box>
-      <Box
-        background="#9c3ab3 radial-gradient(rgba(255, 255, 255, 0.712) 10%, transparent 1%)"
-        borderRadius="8px"
-        backdropFilter="blur(3px)"
-        opacity={openedIndices.includes(index) ? "1" : "0"}
-        border="1px solid #fff"
-        pos="absolute"
-        width="100%"
-        height="100%"
-        top="0"
-        transition="0.35s"
-        animation="moveBackground 8s linear infinite"
-        backgroundSize="5px 5px"
-      />
     </Flex>
   </Flex>
 );
@@ -260,3 +328,27 @@ const Divider = (props) => (
     <Box className="headerWave" />
   </Flex>
 );
+
+const GradientBox = ({ ...props }) => {
+  return (
+    <Box
+      w="100%"
+      h="100%"
+      position="relative"
+      background="
+  linear-gradient(
+    135deg,
+    #121212 25%,
+    #1a1a1a 25%,
+    #1a1a1a 50%,
+    #121212 50%,
+    #121212 75%,
+    #1a1a1a 75%,
+    #1a1a1a
+  )"
+      backgroundSize="40px 40px"
+      animation="moveBackground 8s linear infinite"
+      {...props}
+    />
+  );
+};
